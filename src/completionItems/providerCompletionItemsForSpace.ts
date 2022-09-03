@@ -16,13 +16,13 @@ export const provideCompletionItemsForSpace = (params: {schema: Schema}) => {
         const columnNamePrefixForFrom = lineprefixForFrom[lineprefixForFrom.length - 1];
         console.log({columnNamePrefixForFrom});
         
-        let giveIntellisenceForColumnName = true;
+        let giveIntellisenseForColumnName = true;
         if (columnNameSuffixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'on' && columnNamePrefixForFrom.toLowerCase() !== '=' && columnNamePrefixForFrom.toLowerCase() !== 'where' && columnNamePrefixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'join' ) {
             return[];
         } else if (columnNameSuffixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'on' && columnNamePrefixForFrom.toLowerCase() !== '=' && columnNamePrefixForFrom.toLowerCase() !== 'where') {
-            giveIntellisenceForColumnName = false;
+            giveIntellisenseForColumnName = false;
         }
-        console.log({giveIntellisenceForColumnName});
+        console.log({giveIntellisenseForColumnName});
         
         const filteredColumns = params.schema.filter(e => getSqlTables(getSqlString(document, position))?.map(table => table.toLowerCase().trim())?.includes(e.tableName.toLowerCase()));
         const newColumns: any[] = [];
@@ -34,7 +34,7 @@ export const provideCompletionItemsForSpace = (params: {schema: Schema}) => {
         };
         
         return [
-          ...(!giveIntellisenceForColumnName? params.schema.map(e => myitem(e.tableName)) : newColumns.map(e => myitem(e)))
+          ...(!giveIntellisenseForColumnName? params.schema.map(e => myitem(e.tableName)) : newColumns.map(e => myitem(e)))
         ];
       };
 };

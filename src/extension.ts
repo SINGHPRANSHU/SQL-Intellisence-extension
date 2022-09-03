@@ -14,7 +14,7 @@ import { getUserInput } from './helpers/getUserInput';
 export function activate(context: vscode.ExtensionContext) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "sql-intellisence" is now active!');
+	console.log('Congratulations, your extension "sql-intellisense" is now active!');
 
 	let schema: Schema = [];
 	let disposable = vscode.languages.registerCompletionItemProvider (
@@ -39,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// The commandId parameter must match the command field in package.json
 	context.subscriptions.push(disposable);
      
-    disposable = vscode.commands.registerCommand('sql-intellisence.start-sql-extension', async () => {
+    disposable = vscode.commands.registerCommand('sql-intellisense.start-sql-extension', async () => {
 		let host = await getUserInput({placeHolder: 'Enter Host', prompt: ''}) as string;
 		let user = await getUserInput({placeHolder: 'Enter USER', prompt: ''}) as string;
 		let database = await getUserInput({placeHolder: 'Enter DATABASE', prompt: ''}) as string;

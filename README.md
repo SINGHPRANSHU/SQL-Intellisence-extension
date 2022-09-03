@@ -1,4 +1,4 @@
-# sql-intellisence README
+# sql-intellisense README
 
 This extension will help in giving intellisense for tablename and columname for mysql.
 This project is in initial phase and will have lots of bugs.

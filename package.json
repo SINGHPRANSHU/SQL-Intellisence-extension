@@ -1,5 +1,5 @@
 {
-  "name": "sql-intellisence",
+  "name": "sql-intellisense",
   "displayName": "sql-intellisense",
   "description": "",
   "version": "0.0.1",
@@ -11,13 +11,13 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:sql-intellisence.start-sql-extension"
+    "onCommand:sql-intellisense.start-sql-extension"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "sql-intellisence.start-sql-extension",
+        "command": "sql-intellisense.start-sql-extension",
         "title": "start sql extension"
       }
     ]
