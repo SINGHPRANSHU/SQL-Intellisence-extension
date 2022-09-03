@@ -1,0 +1,1 @@
+export type Schema =  {tableName: string, columnName: string[]}[];
