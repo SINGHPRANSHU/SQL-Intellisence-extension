@@ -1,6 +1,6 @@
 {
   "name": "sql-intellisence",
-  "displayName": "sql-intellisence",
+  "displayName": "sql-intellisense",
   "description": "",
   "version": "0.0.1",
   "engines": {
