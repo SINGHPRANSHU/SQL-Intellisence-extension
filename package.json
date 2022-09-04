@@ -3,6 +3,10 @@
   "displayName": "sql-intellisense",
   "description": "",
   "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SINGHPRANSHU/SQL-Intellisense-extension"
+  },
   "engines": {
     "vscode": "^1.70.0"
   },

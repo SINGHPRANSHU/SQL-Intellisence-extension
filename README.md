@@ -7,23 +7,39 @@ This project is in initial phase and will have lots of bugs.
 
 Currently this will only work for JS ans TS projects.
 
+works only with ES6 Template Strings:
+
+```javascript
+const query = `
+    select * from tables;
+`;
+``` 
+
 ## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
 
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `sql-intellisense.start-sql-extension`: Enable this extension.
+* reloading vscode window will disable the extension.
 
-### 1.0.0
+### 0.0.3
 
 Initial release of SQL Intellisense
 
 ---
 
+## Integration with database
 
+Integration with real database is available and controlled through VSCode options or simply Enter credentaials when running sql-intellisense.start-sql-extension in command palette:
+
+```json
+{
+    "sql-intellisense.dbHost": "localhost",
+    "sql-intellisense.dbPort": "3306",
+    "sql-intellisense.dbUser": "root",
+    "sql-intellisense.dbPassword": "sql",
+    "sql-intellisense.dbName": "sql"
+}
+```
 
 **Enjoy!**

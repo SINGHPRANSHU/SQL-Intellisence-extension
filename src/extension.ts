@@ -6,6 +6,7 @@ import { provideCompletionItemsForSpace } from './completionItems/providerComple
 import { Schema } from './helpers/dbSchema';
 import { getSchema } from './helpers/getSchema';
 import { getUserInput } from './helpers/getUserInput';
+import * as configuration from './configuration/configuration';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -38,17 +39,19 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(disposable);
      
     disposable = vscode.commands.registerCommand('sql-intellisense.start-sql-extension', async () => {
-		let host = await getUserInput({placeHolder: 'Enter Host', prompt: ''}) as string;
-		let user = await getUserInput({placeHolder: 'Enter USER', prompt: ''}) as string;
-		let database = await getUserInput({placeHolder: 'Enter DATABASE', prompt: ''}) as string;
-		let password = await getUserInput({placeHolder: 'Enter PASSWORD', prompt: ''}) as string;
-	
-		try {
+		let	 host = configuration.get<string>('dbHost') || await getUserInput({placeHolder: 'Enter Host', prompt: ''}) as string;
+		let	 user = configuration.get<string>('dbUser') || await getUserInput({placeHolder: 'Enter USER', prompt: ''}) as string;
+		let	 database = configuration.get<string>('dbName') || await getUserInput({placeHolder: 'Enter PASSWORD', prompt: ''}) as string;
+		let	 password = configuration.get<string>('dbPassword') || await getUserInput({placeHolder: 'Enter PASSWORD', prompt: ''}) as string;
+		let	 port = configuration.get<string>('dbPort') || await getUserInput({placeHolder: 'Enter Port', prompt: ''}) as string;
+
+		try {	
 			const schemaFromDb: Schema = (await getSchema({
 				host,
 				user,
 				database,
 				password,
+				port: parseInt(port) || 3306
 			  })) as any;
 			  schema.push(...schemaFromDb);
 			  console.log(schema);
