@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 import { Schema } from '../helpers/dbSchema';
-import { getAllOccurenceInBetweenString } from '../helpers/getAllOccurencesInString';
 import { getSqlString } from '../helpers/getSqlString';
 import { getSqlTables } from '../helpers/getSqlTables';
 
@@ -14,15 +13,13 @@ export const provideCompletionItemsForSpace = (params: {schema: Schema}) => {
         
         const columnNameSuffixForFrom = linesuffixForFrom[0];
         const columnNamePrefixForFrom = lineprefixForFrom[lineprefixForFrom.length - 1];
-        console.log({columnNamePrefixForFrom});
         
         let giveIntellisenseForColumnName = true;
-        if (columnNameSuffixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'on' && columnNamePrefixForFrom.toLowerCase() !== '=' && columnNamePrefixForFrom.toLowerCase() !== 'where' && columnNamePrefixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'join' ) {
+        if (columnNameSuffixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'on' && columnNamePrefixForFrom.toLowerCase() !== '=' && columnNamePrefixForFrom.toLowerCase() !== 'where' && columnNamePrefixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'and' && columnNamePrefixForFrom.toLowerCase() !== 'or' && columnNamePrefixForFrom.toLowerCase() !== 'join' ) {
             return[];
-        } else if (columnNameSuffixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'on' && columnNamePrefixForFrom.toLowerCase() !== '=' && columnNamePrefixForFrom.toLowerCase() !== 'where') {
+        } else if (columnNameSuffixForFrom.toLowerCase() !== 'from' && columnNamePrefixForFrom.toLowerCase() !== 'on' && columnNamePrefixForFrom.toLowerCase() !== '=' && columnNamePrefixForFrom.toLowerCase() !== 'where' && columnNamePrefixForFrom.toLowerCase() !== 'and' && columnNamePrefixForFrom.toLowerCase() !== 'or') {
             giveIntellisenseForColumnName = false;
         }
-        console.log({giveIntellisenseForColumnName});
         
         const filteredColumns = params.schema.filter(e => getSqlTables(getSqlString(document, position))?.map(table => table.toLowerCase().trim())?.includes(e.tableName.toLowerCase()));
         const newColumns: any[] = [];

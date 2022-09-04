@@ -1,4 +1,4 @@
-import { setgroups } from "process";
+import * as vscode from 'vscode';
 import { getSqlTables } from "./getSqlTables";
 
 export function getColumnNames(str: string) {
@@ -14,6 +14,6 @@ export function getColumnNames(str: string) {
         return {
             index: str.indexOf(e),
             str: e,
-        }
+        };
     });
 }

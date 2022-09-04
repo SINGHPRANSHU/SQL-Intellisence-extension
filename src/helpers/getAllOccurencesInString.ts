@@ -6,11 +6,27 @@ export function getAllOccurenceInBetweenString(str: string, char: string) {
     let currline = 1;
     let startcurrLine = 1;
     let endcurrLine = 1;
+    let column = 0;
+    const bracketStack: {startIndex: number, stopIndex: number, startLineNumber: number, stopLineNumber: number}[] = [];
+    const bracketArr: {startIndex: number, stopIndex: number, startLineNumber: number, stopLineNumber: number}[] = [];
     
  for (let index = 0; index < str.length; index++) {
     const element = str[index];
     if( element === '\r\n' || element === '\n') {
         currline++;
+        column = 0;
+    }
+    column++;
+    if (element === '(') {
+       bracketStack.push({startIndex: index, startLineNumber: currline, stopIndex: 0, stopLineNumber: 0});
+    }
+    if (element === ')' && bracketStack.length) {
+        const bracketStackLastElement = bracketStack.pop();
+        if (bracketStackLastElement) {
+            bracketStackLastElement.stopIndex = index;
+            bracketStackLastElement.stopLineNumber = currline;
+            bracketArr.push(bracketStackLastElement);
+        } 
     }
     if (element === char) {
         if (findStart) {
@@ -28,5 +44,5 @@ export function getAllOccurenceInBetweenString(str: string, char: string) {
     }
     
  }
- return result;
+ return {result, bracketArr};
 }

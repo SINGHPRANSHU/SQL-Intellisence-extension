@@ -4,9 +4,7 @@ import * as vscode from 'vscode';
 import { provideCompletionItemsForDot } from './completionItems/ProviderCompletionItemForDot';
 import { provideCompletionItemsForSpace } from './completionItems/providerCompletionItemsForSpace';
 import { Schema } from './helpers/dbSchema';
-import { getAllOccurenceInBetweenString } from './helpers/getAllOccurencesInString';
 import { getSchema } from './helpers/getSchema';
-import { getSqlTables } from './helpers/getSqlTables';
 import { getUserInput } from './helpers/getUserInput';
 
 // this method is called when your extension is activated

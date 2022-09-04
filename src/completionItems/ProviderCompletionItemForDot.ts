@@ -13,7 +13,6 @@ export const provideCompletionItemsForDot = (params: {schema: Schema}) => {
           item.range = new vscode.Range(position, position);
           return item;
         };
-        console.log('asdlsknadlsa',...params.schema.find(e => e.tableName.toLowerCase() === columnNameDorDot.toLowerCase())?.columnName.map(e => myitem(e)) as any);
         if (!getSqlTables(getSqlString(document, position))?.length) {
              return [];
         }
