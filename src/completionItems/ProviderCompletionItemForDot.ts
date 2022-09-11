@@ -13,7 +13,8 @@ export const provideCompletionItemsForDot = (params: {schema: Schema}) => {
           item.range = new vscode.Range(position, position);
           return item;
         };
-        if (!getSqlTables(getSqlString(document, position))?.length) {
+        const sqlString = getSqlString(document, position);
+        if (!getSqlTables(sqlString.sqlQueryWithoutInnerQuery)?.length) {
              return [];
         }
         return [

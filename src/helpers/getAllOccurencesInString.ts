@@ -1,4 +1,7 @@
+import { removeSQLFunction } from "./removeSQLFunction";
+
 export function getAllOccurenceInBetweenString(str: string, char: string) {
+    str = removeSQLFunction(str);
     const result: {str: string, start: number, end: number, startcurrLine: number, endcurrLine: number}[] = [];
     let findStart = true;
     let start = 0;

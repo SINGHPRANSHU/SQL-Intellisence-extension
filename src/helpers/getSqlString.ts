@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { getAllOccurenceInBetweenString } from "./getAllOccurencesInString";
 import { getSqlQueryWithoutInnerQuery } from './getSqlQueryWithoutInnerQuery';
+import { getTableNameAndItsAlias } from './getTableNameAndItsAlias';
 
 export const getSqlString = (doc: vscode.TextDocument, position: vscode.Position) => {
     const str = getAllOccurenceInBetweenString(doc.getText(), '`');
@@ -14,7 +15,6 @@ export const getSqlString = (doc: vscode.TextDocument, position: vscode.Position
             if ( offset) {
                 const startdist = offset - e.startIndex;
                 const enddist = e.stopIndex - offset;
-                console.log();
                 if(e.startLineNumber - 1 <= cursorLineNumber && smallestStartDist > startdist && startdist >= 0 && enddist >= 0) {
                     smallestStartDist = i;
                 }
@@ -22,12 +22,18 @@ export const getSqlString = (doc: vscode.TextDocument, position: vscode.Position
         });
         if(smallestStartDist !== Infinity) {
             const currBracketArr = str.bracketArr[smallestStartDist];
-            const sqlQueryInBracket = doc.getText().substring(currBracketArr.startIndex + 1, currBracketArr.stopIndex);
-            console.log('asdasd', getSqlQueryWithoutInnerQuery(sqlQueryInBracket));   
-            return getSqlQueryWithoutInnerQuery(sqlQueryInBracket);
+            const sqlQueryInBracket = doc.getText().substring(currBracketArr.startIndex + 1, currBracketArr.stopIndex);  
+            const sqlQuery = getSqlQueryWithoutInnerQuery(sqlQueryInBracket);
+            
+            return {
+                sqlQueryWithoutInnerQuery:  sqlQuery,
+                tableNameAndItsAlias: getTableNameAndItsAlias(sqlQuery),
+            };
         }
     }
-    console.log(getSqlQueryWithoutInnerQuery(currstr[0]?.str));
-    
-    return getSqlQueryWithoutInnerQuery(currstr[0]?.str);
+    const sqlQuery = getSqlQueryWithoutInnerQuery(currstr[0]?.str);
+    return {
+        sqlQueryWithoutInnerQuery:  sqlQuery,
+        tableNameAndItsAlias: getTableNameAndItsAlias(sqlQuery),
+    };
 };
