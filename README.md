@@ -24,8 +24,8 @@ This extension contributes the following settings:
 
 ### 0.0.5
 
-Support For Distinct Keyword
-Table alias support
+* Support For Distinct Keyword
+* Table alias support
 
 ---
 
