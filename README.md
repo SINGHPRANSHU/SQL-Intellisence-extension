@@ -22,15 +22,16 @@ This extension contributes the following settings:
 * `sql-intellisense.start-sql-extension`: Enable this extension.
 * reloading vscode window will disable the extension.
 
-### 0.0.3
+### 0.0.5
 
-Initial release of SQL Intellisense
+Support For Distinct Keyword
+Table alias support
 
 ---
 
 ## Integration with database
 
-Integration with real database is available and controlled through VSCode options or simply Enter credentaials when running sql-intellisense.start-sql-extension in command palette:
+Integration with real database through VSCode options or simply Enter credentaials when running sql-intellisense.start-sql-extension in command palette:
 
 ```json
 {

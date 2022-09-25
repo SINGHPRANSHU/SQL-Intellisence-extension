@@ -26,8 +26,6 @@ export const provideCompletionItemsForSpace = (params: {schema: Schema}) => {
         }
 
         const sqlString = getSqlString(document, position);
-        console.log(sqlString.tableNameAndItsAlias);
-        
         const filteredColumns = params.schema.filter(e => getSqlTables(sqlString.sqlQueryWithoutInnerQuery)?.map(table => table.toLowerCase().trim())?.includes(e.tableName.toLowerCase()));
         let clonedFilteredColumn = _.clone(filteredColumns);
         const newFilteredColumn = clonedFilteredColumn.map(e => {
@@ -42,7 +40,6 @@ export const provideCompletionItemsForSpace = (params: {schema: Schema}) => {
           item.range = new vscode.Range(position, position);
           return item;
         };
-        
 
         if(columnNameSuffixForFrom.toLowerCase() === 'from') {
           console.log('here', newColumns);

@@ -1,4 +1,4 @@
-export function removeSQLFunction(str: string, sqlFuncrion: string = 'distinct') {
-    const regex = new RegExp(`^${sqlFuncrion}[\n ]*[(][\n ]*[)][\n ]+|[\s]+distinct[\n ]*[(][\n ]*[)][\n ]+`, 'igm');
+export function removeSQLFunction(str: string, sqlFunction: string[] = ['distinct', 'group_concat']) {
+    const regex = new RegExp(`\\b(${sqlFunction.join('|')})\\s*[(]\\s*[)]\\B`, 'igm');
     return str.replace(regex, m => m.split('').map(e => e !== '\n'? ' ': '\n' ).join(''));
 }

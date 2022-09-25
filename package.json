@@ -2,7 +2,7 @@
   "name": "sql-intellisense",
   "displayName": "sql-intellisense",
   "description": "",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/SINGHPRANSHU/SQL-Intellisense-extension"
